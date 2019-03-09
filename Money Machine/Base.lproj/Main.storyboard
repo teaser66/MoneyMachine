@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Main Screen" customClass="ViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-qZ-szD">
-                                <rect key="frame" x="37.5" y="190.5" width="300" height="350"/>
+                                <rect key="frame" x="37.5" y="126.5" width="300" height="350"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zD-fP-cg7">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
@@ -30,6 +30,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-JC-mPH">
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="130"/>
                                                         <state key="normal" backgroundImage="receipt"/>
+                                                        <connections>
+                                                            <action selector="goExpenseWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cTf-uv-4WC"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgT-Ik-iTZ">
                                                         <rect key="frame" x="0.0" y="130" width="140" height="45"/>
@@ -43,6 +46,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWz-RI-hef">
                                                         <rect key="frame" x="0.0" y="175" width="140" height="130"/>
                                                         <state key="normal" backgroundImage="budget-md"/>
+                                                        <connections>
+                                                            <action selector="goReportsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XUz-bV-6JH"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzr-7v-yec">
                                                         <rect key="frame" x="0.0" y="305" width="140" height="45"/>
@@ -69,6 +75,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIq-pY-gCh">
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="130"/>
                                                         <state key="normal" backgroundImage="add_money"/>
+                                                        <connections>
+                                                            <action selector="goSaveWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nen-hz-2nV"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Savings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flE-1Q-2Yk">
                                                         <rect key="frame" x="0.0" y="130" width="140" height="45"/>
@@ -79,6 +88,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWP-8f-aJg">
                                                         <rect key="frame" x="0.0" y="175" width="140" height="130"/>
                                                         <state key="normal" backgroundImage="search_icon"/>
+                                                        <connections>
+                                                            <action selector="goSearchWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dAZ-gh-prs"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMj-Lu-V8W">
                                                         <rect key="frame" x="0.0" y="305" width="140" height="45"/>
@@ -109,30 +121,86 @@
                                     <constraint firstAttribute="trailing" secondItem="9zD-fP-cg7" secondAttribute="trailing" id="uM7-g4-3sQ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money Machine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl2-Qj-AtX">
+                                <rect key="frame" x="37.5" y="25" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="UkT-cS-OEk"/>
+                                    <constraint firstAttribute="height" constant="50" id="jAy-XV-BMz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GQb-qZ-szD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Nre-1d-7ti"/>
                             <constraint firstItem="GQb-qZ-szD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="g9X-cq-YNr"/>
+                            <constraint firstItem="zl2-Qj-AtX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="u0p-2O-Ep9"/>
+                            <constraint firstItem="9zD-fP-cg7" firstAttribute="top" secondItem="zl2-Qj-AtX" secondAttribute="bottom" constant="51.5" id="ya2-S2-JHM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="cA1-op-epZ"/>
+                    <connections>
+                        <outlet property="expenseButton" destination="qcF-JC-mPH" id="q6p-Ap-wGS"/>
+                        <outlet property="reportButton" destination="hWz-RI-hef" id="WtJ-td-avm"/>
+                        <outlet property="saveButton" destination="tIq-pY-gCh" id="Wdr-pE-Kgr"/>
+                        <outlet property="searchButton" destination="cWP-8f-aJg" id="HMQ-TA-S6g"/>
+                        <segue destination="NoL-bL-4zp" kind="show" identifier="goAdd" id="fSZ-pG-3e1"/>
+                        <segue destination="GLA-ce-1G9" kind="show" identifier="goReports" id="VMf-4S-Rm4"/>
+                        <segue destination="H1g-42-K6M" kind="show" identifier="goSearch" id="qVh-Ro-7dB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+        </scene>
+        <!--Add Screen-->
+        <scene sceneID="MjR-Kk-GEF">
+            <objects>
+                <viewController id="NoL-bL-4zp" userLabel="Add Screen" customClass="AddViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XUa-DR-Xi3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="vDV-d7-COy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qxh-rs-5Ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1818" y="134"/>
+        </scene>
+        <!--Reports Screen-->
+        <scene sceneID="JRx-5u-tAX">
+            <objects>
+                <viewController id="GLA-ce-1G9" userLabel="Reports Screen" customClass="ReportsViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mR0-Z8-LDF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="oGD-6q-4nP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZF-fk-6PS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="841"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qLc-lR-0bI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GWz-i2-WhE" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DIa-EG-cEZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="DIa-EG-cEZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -142,6 +210,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2GZ-WE-PJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+        <!--Search Screen-->
+        <scene sceneID="TCK-I6-twK">
+            <objects>
+                <viewController id="H1g-42-K6M" userLabel="Search Screen" customClass="SearchViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wET-Q7-8mc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="tjF-w9-dOP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAY-Kq-nlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1817" y="841"/>
         </scene>
     </scenes>
     <resources>

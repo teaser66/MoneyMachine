@@ -10,6 +10,9 @@
 		140E567722347D3D00CF732B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567622347D3D00CF732B /* AddViewController.swift */; };
 		140E567922347DBA00CF732B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567822347DBA00CF732B /* SearchViewController.swift */; };
 		140E567B22347DCE00CF732B /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567A22347DCE00CF732B /* ReportsViewController.swift */; };
+		144DCBAC2236028000C31357 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBAB2236027F00C31357 /* TransactionManager.swift */; };
+		144DCBB1223602C700C31357 /* TransactionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB0223602C700C31357 /* TransactionObject.swift */; };
+		144DCBB32236043600C31357 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB22236043600C31357 /* DataManager.swift */; };
 		149DC9D8223421EC0053EC2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC9D7223421EC0053EC2D /* AppDelegate.swift */; };
 		149DC9DA223421EC0053EC2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC9D9223421EC0053EC2D /* ViewController.swift */; };
 		149DC9DD223421EC0053EC2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149DC9DB223421EC0053EC2D /* Main.storyboard */; };
@@ -45,6 +48,9 @@
 		140E567622347D3D00CF732B /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		140E567822347DBA00CF732B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		140E567A22347DCE00CF732B /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		144DCBAB2236027F00C31357 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		144DCBB0223602C700C31357 /* TransactionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObject.swift; sourceTree = "<group>"; };
+		144DCBB22236043600C31357 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		149DC9D4223421EC0053EC2D /* Money Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149DC9D7223421EC0053EC2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149DC9D9223421EC0053EC2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +103,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		144DCBAD2236028C00C31357 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				144DCBAB2236027F00C31357 /* TransactionManager.swift */,
+				144DCBB22236043600C31357 /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		144DCBAE2236029900C31357 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				149DC9D9223421EC0053EC2D /* ViewController.swift */,
+				140E567622347D3D00CF732B /* AddViewController.swift */,
+				140E567822347DBA00CF732B /* SearchViewController.swift */,
+				140E567A22347DCE00CF732B /* ReportsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		144DCBAF223602AA00C31357 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				144DCBB0223602C700C31357 /* TransactionObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		149DC9CB223421EC0053EC2D = {
 			isa = PBXGroup;
 			children = (
@@ -123,10 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				149DC9D7223421EC0053EC2D /* AppDelegate.swift */,
-				149DC9D9223421EC0053EC2D /* ViewController.swift */,
-				140E567622347D3D00CF732B /* AddViewController.swift */,
-				140E567822347DBA00CF732B /* SearchViewController.swift */,
-				140E567A22347DCE00CF732B /* ReportsViewController.swift */,
+				144DCBAD2236028C00C31357 /* Managers */,
+				144DCBAF223602AA00C31357 /* Models */,
+				144DCBAE2236029900C31357 /* ViewControllers */,
 				149DC9DB223421EC0053EC2D /* Main.storyboard */,
 				149DC9E1223421FF0053EC2D /* Assets.xcassets */,
 				149DC9E3223421FF0053EC2D /* LaunchScreen.storyboard */,
@@ -174,7 +207,6 @@
 				0486D2541FB59B7A75132E84 /* Pods-Money MachineUITests.debug.xcconfig */,
 				DFFF396446CE3C66F4F405E8 /* Pods-Money MachineUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -407,9 +439,12 @@
 				140E567922347DBA00CF732B /* SearchViewController.swift in Sources */,
 				149DC9DA223421EC0053EC2D /* ViewController.swift in Sources */,
 				149DC9E0223421EC0053EC2D /* Money_Machine.xcdatamodeld in Sources */,
+				144DCBAC2236028000C31357 /* TransactionManager.swift in Sources */,
 				140E567722347D3D00CF732B /* AddViewController.swift in Sources */,
 				140E567B22347DCE00CF732B /* ReportsViewController.swift in Sources */,
 				149DC9D8223421EC0053EC2D /* AppDelegate.swift in Sources */,
+				144DCBB32236043600C31357 /* DataManager.swift in Sources */,
+				144DCBB1223602C700C31357 /* TransactionObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

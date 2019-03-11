@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let categories = DataManager.getEntities(name:"Category")
+            
+        if categories.count == 0  {
+            preloadData()
+        }
         
         return true
     }
@@ -90,6 +95,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func preloadData () {
+   
+            
+        let categories = ["Food", "Health", "Home", "Tech", "Vehicle", "Clothing", "Account", "Other"] as [String]
+        
+        //Save to Core Data
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        // Context
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        // Entities
+        
+        for category in categories {
+            // Entity
+            let entity =
+                NSEntityDescription.entity(forEntityName: "Category",
+                                           in: managedContext)!
+            
+            let categoryToSave = NSManagedObject(entity: entity,
+                                                 insertInto: managedContext)
+            
+            // Set attributes
+            categoryToSave.setValue(category, forKeyPath: "name")
+            
+        }
+        
+        // Save
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        
+    }
+    
 
 }
 

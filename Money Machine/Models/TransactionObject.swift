@@ -1,0 +1,28 @@
+//
+//  TransactionObject.swift
+//  Money Machine
+//
+//  Created by Rob Faiella on 3/10/19.
+//  Copyright © 2019 robfaiella. All rights reserved.
+//
+
+import UIKit
+
+public class TransactionObject: NSObject {
+    
+    public var userId:String
+    public var transactionDate:Date
+    public var transactionDescription:String
+    public var transactionAmount:Decimal
+    public var category:String
+   
+    public init(userId:String, transactionDate:Date, transactionDescription:String, transactionAmount:Decimal, category:String) {
+        self.userId = userId
+        self.transactionDate = transactionDate
+        self.transactionDescription = transactionDescription
+        self.transactionAmount = transactionAmount
+        self.category = category
+    }
+   
+    
+}

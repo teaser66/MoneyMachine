@@ -35,6 +35,7 @@ class DataManager: NSObject {
                                      insertInto: managedContext)
         
         // Set attributes
+        transactionToSave.setValue(transaction.type, forKeyPath: "type")
         transactionToSave.setValue(transaction.userId, forKeyPath: "userId")
         transactionToSave.setValue(transaction.transactionDate, forKeyPath: "date")
         transactionToSave.setValue(transaction.transactionAmount, forKeyPath: "amount")
@@ -88,6 +89,69 @@ class DataManager: NSObject {
     }
     
     
+    // Search Functions
+    
+    
+    class func searchForItWith(attributes: Dictionary<String, Any>) -> [TransactionObject] {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest : NSFetchRequest<Transaction> = Transaction.fetchRequest()
+            
+            //Build predicate
+            var predicateArray:[NSPredicate] = []
+            
+            if let theRange = attributes["range"] as? String {
+                if theRange == "day" {
+                    predicateArray.append(NSPredicate(format: "%K >= %@ && %K <= %@", "date", DataManager.getThisDayStart()! as NSDate, "date", DataManager.getThisDayEnd()! as NSDate))
+                }
+                if theRange == "week" {
+                    predicateArray.append(NSPredicate(format: "%K >= %@ && %K <= %@", "date", DataManager.getThisWeekStart()! as NSDate, "date", DataManager.getThisWeekEnd()! as NSDate))
+                }
+                if theRange == "month" {
+                    predicateArray.append(NSPredicate(format: "%K >= %@ && %K <= %@", "date", DataManager.getThisMonthStart()! as NSDate, "date", DataManager.getThisMonthEnd()! as NSDate))
+                }
+                if theRange == "year" {
+                    predicateArray.append(NSPredicate(format: "%K >= %@ && %K <= %@", "date", DataManager.getThisYearStart()! as NSDate, "date", DataManager.getThisYearEnd()! as NSDate))
+                }
+            }else {
+                if let theUser = attributes["userId"] as? String {
+                    predicateArray.append(NSPredicate(format: "userId = %@", theUser))
+                }
+                if let theCategory = attributes["category"] as? String {
+                    predicateArray.append(NSPredicate(format: "category = %@", theCategory))
+                }
+                if let theDate = attributes["date"] as? Date {
+                    predicateArray.append(NSPredicate(format: "date = %@", theDate as CVarArg))
+                }
+                if let theType = attributes["type"] as? String {
+                    predicateArray.append(NSPredicate(format: "type = %@", theType))
+                }
+            }
+            
+            
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicateArray)
+            print(predicate)
+            fetchRequest.predicate = predicate
+            let fetchedResults = try context.fetch(fetchRequest)
+            var results:[TransactionObject] = []
+            for transaction in fetchedResults {
+                let object = TransactionObject(userId: transaction.userId ?? "", transactionDate: transaction.date!, transactionDescription: transaction.transactionDescription ?? "" , transactionAmount: transaction.amount! as Decimal, category: transaction.category ?? "", type: transaction.type ?? "")
+                results.append(object)
+            }
+            
+            return results
+        }
+        catch {
+            print ("fetch task failed", error)
+        }
+        
+        return []
+        
+    }
+    
+    
     // Add functions
     
     class func addCategory(category: String) -> Bool {
@@ -126,7 +190,7 @@ class DataManager: NSObject {
     }
     
     
-    class func addUser(category: String) -> Bool {
+    class func addUser(name: String) -> Bool {
         //Save to Core Data
         
         guard let appDelegate =
@@ -147,7 +211,7 @@ class DataManager: NSObject {
                                              insertInto: managedContext)
         
         // Set attributes
-        userToSave.setValue(category, forKeyPath: "userId")
+        userToSave.setValue(name, forKeyPath: "userId")
         
         // Save
         do {
@@ -191,5 +255,93 @@ class DataManager: NSObject {
        return entities
         
     }
+    
+    
+    // Helpers
+    
+    class func textIsValidCurrencyFormat(text: String) -> Bool {
+        var isValidCurrencyFormat = false
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let number = numberFormatter.number(from: text)
+        
+        if number != nil {
+            let numberParts = text.components(separatedBy: ".")
+            if numberParts.count == 2 {
+                let decimalArray = Array(numberParts[1])
+                if decimalArray.count <= 2 {
+                    if text == text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) {
+                        isValidCurrencyFormat = true
+                    }
+                }
+            } else {
+                if text == text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) {
+                    isValidCurrencyFormat = true
+                }
+            }
+            
+        }
+        
+        return isValidCurrencyFormat
+    }
+    
+    
+   
+    
+    class func getThisDayStart() -> Date? {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        return calendar.startOfDay(for: Date())
+    }
+    
+    class func getThisDayEnd() -> Date? {
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        return calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))
+    }
+    
+    class func getThisMonthStart() -> Date? {
+        let components = Calendar.current.dateComponents([.year, .month], from: Date())
+        return Calendar.current.date(from: components)!
+    }
+    
+    class func getThisMonthEnd() -> Date? {
+        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: Date()) as NSDateComponents
+        components.month += 1
+        components.day = 1
+        components.day -= 1
+        return Calendar.current.date(from: components as DateComponents)!
+    }
+    
+    
+    class func getThisWeekStart() -> Date? {
+        let components = Calendar.current.dateComponents([.year, .month, .weekday], from: getThisDayStart() ?? Date()) as NSDateComponents
+        let theDiff = components.weekday - 1
+        print(Calendar.current.date(byAdding: .day, value: -theDiff, to: getThisDayStart() ?? Date())!)
+        return Calendar.current.date(byAdding: .day, value: -theDiff, to: getThisDayStart() ?? Date())
+    }
+    
+    class func getThisWeekEnd() -> Date? {
+        let components = Calendar.current.dateComponents([.year, .month, .weekday], from: getThisDayEnd() ?? Date()) as NSDateComponents
+        let theDiff = 7 - components.weekday
+        print(Calendar.current.date(byAdding: .day, value: theDiff, to: getThisDayStart() ?? Date())!)
+        return Calendar.current.date(byAdding: .day, value: theDiff, to: getThisDayStart() ?? Date())
+    }
+    
+    class func getThisYearStart() -> Date? {
+        let components = Calendar.current.dateComponents([.year], from: Date())
+        return Calendar.current.date(from: components)!
+    }
+    
+    class func getThisYearEnd() -> Date? {
+        let components:NSDateComponents = Calendar.current.dateComponents([.year], from: Date()) as NSDateComponents
+        components.year += 1
+        components.day = 1
+        components.day -= 1
+        return Calendar.current.date(from: components as DateComponents)!
+    }
+    
+
     
 }

@@ -10,9 +10,9 @@ import UIKit
 
 class TransactionManager: NSObject {
 
-    public func createTransaction(userId:String, transactionDate:Date, transactionDescription:String, transactionAmount:Decimal, category:String) -> Bool {
+    class func createTransaction(userId:String, transactionDate:Date, transactionDescription:String, transactionAmount:Decimal, category:String, type:String) -> Bool {
         
-        let myTransaction = TransactionObject(userId: userId, transactionDate: transactionDate, transactionDescription: transactionDescription, transactionAmount: transactionAmount, category: category)
+        let myTransaction = TransactionObject(userId: userId, transactionDate: transactionDate, transactionDescription: transactionDescription, transactionAmount: transactionAmount, category: category, type: type)
         
         return DataManager.saveTransaction(transaction: myTransaction)
         

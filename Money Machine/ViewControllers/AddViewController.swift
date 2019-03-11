@@ -14,6 +14,8 @@ class AddViewController: FormViewController {
     
     var entryType:String = ""
     
+    let categoryOptions = DataManager.transactionCategories()
+    let userOptions = DataManager.transactionUsers()
     
     struct Static {
         static let usersTag = "users"
@@ -22,6 +24,7 @@ class AddViewController: FormViewController {
         static let amountTag = "amount"
         static let descriptionTag = "description"
         static let categoryTag = "category"
+        static let categoriesTag = "categories"
         static let check = "check"
         static let segmented = "segmented"
         static let picker = "picker"
@@ -76,42 +79,53 @@ class AddViewController: FormViewController {
     
     
     func validateBeforeSave() {
+        
+        self.view.endEditing(true)
+        
         var isValid = true
         var message: String = ""
         
        let formValues = self.form.formValues()
        
        var hasAUser = false
+        var hasACategory = false
+        var hasANewUser = false
+        var hasANewCategory = false
         
-        for formElement in formValues {
+        var userId:String?
+        var date:NSDate?
+        var amount:Decimal = 0.0
+        var category:String?
+        var textDescription:String = ""
+        
+        for (key, value) in formValues {
             
-            
-            if formElement.key == Static.usersTag {
-                if let user = formElement.value as? String {
-                    if user.count > 0 {
-                        hasAUser = true
-                    }
+            if key == Static.descriptionTag {
+                if let text = value as? String {
+                   textDescription = text
                 }
-            }else if formElement.key == Static.userTag {
-                if let user = formElement.value as? String {
-                    if user.count > 0 {
+            }
+           
+            
+            if key == Static.usersTag {
+                if let user = value as? Int {
                         hasAUser = true
+                        userId = userOptions[user]
+                }
+            }else if key == Static.userTag {
+                if let user = value as? String {
+                    if user.count > 0 {
+                        hasANewUser = true
+                        userId = user
                     }
                 }
             }
             
             
             
-            if formElement.key == Static.dateTag {
-                if let date = formElement.value as? String {
-                    if date.count > 0 {
-                        isValid = false
-                        if message.count == 0 {
-                            message = "Date Required"
-                        }else {
-                            message = message + "\nDate Required"
-                        }
-                    }
+            if key == Static.dateTag {
+                if let theDate = value as? NSDate {
+                    date = theDate
                 }else {
                     isValid = false
                     if message.count == 0 {
@@ -122,14 +136,25 @@ class AddViewController: FormViewController {
                 }
             }
             
-            if formElement.key == Static.amountTag {
-                if let amount = formElement.value as? Decimal {
-                    if amount == 0 {
+            if key == Static.amountTag {
+                if let theAmount = value as? String {
+                    if Decimal(string: theAmount) == 0.0 {
                         isValid = false
                         if message.count == 0 {
                             message = "Amount Required"
                         }else {
                             message = message + "\nAmount Required"
+                        }
+                    }else{
+                        if DataManager.textIsValidCurrencyFormat(text: theAmount) {
+                            amount = Decimal(string: theAmount)!
+                        }else {
+                            isValid = false
+                            if message.count == 0 {
+                                message = "Amount Invalid"
+                            }else {
+                                message = message + "\nAmount Invalid"
+                            }
                         }
                     }
                 }else {
@@ -142,29 +167,23 @@ class AddViewController: FormViewController {
                 }
             }
             
-            if formElement.key == Static.categoryTag {
-                if let category = formElement.value as? String {
-                    if category.count > 0 {
-                        isValid = false
-                        if message.count == 0 {
-                            message = "Category Required"
-                        }else {
-                            message = message + "\nCategory Required"
-                        }
-                    }
+            if key == Static.categoriesTag {
+                if let cat = value as? Int {
+                        hasACategory = true
+                        category = categoryOptions[cat]
+                }
+            }else if key == Static.categoryTag {
+                if let theCategory = value as? String {
+                    hasANewCategory = true
+                    category = theCategory
                 }else {
-                    isValid = false
-                    if message.count == 0 {
-                        message = "Category Required"
-                    }else {
-                        message = message + "\nCategory Required"
-                    }
+                   
                 }
             }
             
         }
         
-        if hasAUser == false {
+        if hasAUser == false && hasANewUser == false {
             isValid = false
             if message.count == 0 {
                 message = "UserId Required"
@@ -173,10 +192,57 @@ class AddViewController: FormViewController {
             }
         }
         
+        if hasACategory == false && hasANewCategory == false {
+            isValid = false
+            if message.count == 0 {
+                message = "Category Required"
+            }else {
+                message = message + "\nCategory Required"
+            }
+        }
+        
         if isValid == true {
             
           // Save it!
-            
+            if (TransactionManager.createTransaction(userId: userId!, transactionDate: date! as Date, transactionDescription: textDescription, transactionAmount: amount, category: category!,type:entryType)) {
+                let alert = UIAlertController(title: "Transaction Saved!", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        if hasANewCategory == true {
+                            let _ = DataManager.addCategory(category: category!)
+                        }
+                        if hasANewUser == true {
+                            let _ = DataManager.addUser(name: userId!)
+                        }
+                        self.loadForm()
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                }else {
+                let alert = UIAlertController(title: "Save Failed", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                print("default")
+                
+                case .cancel:
+                print("cancel")
+                
+                case .destructive:
+                print("destructive")
+                
+                
+                }}))
+                self.present(alert, animated: true, completion: nil)
+            }
             
         }else {
             
@@ -205,7 +271,7 @@ class AddViewController: FormViewController {
     fileprivate func loadForm() {
         
         
-        let form = FormDescriptor(title: (entryType == "expense" ? "Expense Form" : "Saving Form"))
+        let form = FormDescriptor(title: (entryType == "Expense" ? "Expense Form" : "Saving Form"))
         
         
         let section1 = FormSectionDescriptor(headerTitle: nil, footerTitle: nil)
@@ -239,7 +305,7 @@ class AddViewController: FormViewController {
         section2.rows.append(row)
         
         
-        row = FormRowDescriptor(tag: Static.textView, type: .multilineText, title: "Description (Optional)")
+        row = FormRowDescriptor(tag: Static.descriptionTag, type: .multilineText, title: "Description (Optional)")
         section2.rows.append(row)
         
 
@@ -248,9 +314,11 @@ class AddViewController: FormViewController {
         section2.rows.append(row)
         
         
-        row = FormRowDescriptor(tag: Static.categoryTag, type: .multipleSelector, title: "Categories")
+        let section3 = FormSectionDescriptor(headerTitle: nil, footerTitle: nil)
+
         
-        let categoryOptions = DataManager.transactionCategories()
+        row = FormRowDescriptor(tag: Static.categoriesTag, type: .multipleSelector, title: "Categories")
+        
         var optionInts:[Int] = []
         if categoryOptions.count > 0 {
             for i in 0...categoryOptions.count - 1 {
@@ -262,13 +330,26 @@ class AddViewController: FormViewController {
         row.configuration.selection.allowsMultipleSelection = false
         row.configuration.selection.optionTitleClosure = { value in
             guard let option = value as? Int else { return "" }
-            return "\(categoryOptions[option])"
+            return "\(self.categoryOptions[option])"
         }
-        section2.rows.append(row)
+        section3.rows.append(row)
+
         
-        form.sections = [section1,section2]
+        row = FormRowDescriptor(tag: Static.categoryTag, type: .name, title: "Add Category")
+        row.configuration.cell.appearance = ["textField.placeholder" : "e.g. Hobbies" as AnyObject, "textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject]
+        
+        section3.rows.append(row)
+        
+        row = FormRowDescriptor(tag: Static.button, type: .button, title: "Clear Form")
+        row.configuration.button.didSelectClosure = { _ in
+            self.loadForm()
+        }
+        //section3.rows.append(row)
+        
+        form.sections = [section1,section2,section3]
         
         self.form = form
+        
     }
 
 

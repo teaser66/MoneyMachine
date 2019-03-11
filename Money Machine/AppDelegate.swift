@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             preloadData()
         }
         
+        // For finding sqlite file in simulator
+//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+//        print(paths[0])
+        
         return true
     }
 

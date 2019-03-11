@@ -13,6 +13,7 @@
 		144DCBAC2236028000C31357 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBAB2236027F00C31357 /* TransactionManager.swift */; };
 		144DCBB1223602C700C31357 /* TransactionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB0223602C700C31357 /* TransactionObject.swift */; };
 		144DCBB32236043600C31357 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB22236043600C31357 /* DataManager.swift */; };
+		144DCBB52236449F00C31357 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB42236449F00C31357 /* ResultsViewController.swift */; };
 		149DC9D8223421EC0053EC2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC9D7223421EC0053EC2D /* AppDelegate.swift */; };
 		149DC9DA223421EC0053EC2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DC9D9223421EC0053EC2D /* ViewController.swift */; };
 		149DC9DD223421EC0053EC2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149DC9DB223421EC0053EC2D /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		144DCBAB2236027F00C31357 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		144DCBB0223602C700C31357 /* TransactionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObject.swift; sourceTree = "<group>"; };
 		144DCBB22236043600C31357 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		144DCBB42236449F00C31357 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		149DC9D4223421EC0053EC2D /* Money Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		149DC9D7223421EC0053EC2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149DC9D9223421EC0053EC2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				140E567622347D3D00CF732B /* AddViewController.swift */,
 				140E567822347DBA00CF732B /* SearchViewController.swift */,
 				140E567A22347DCE00CF732B /* ReportsViewController.swift */,
+				144DCBB42236449F00C31357 /* ResultsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				140E567922347DBA00CF732B /* SearchViewController.swift in Sources */,
 				149DC9DA223421EC0053EC2D /* ViewController.swift in Sources */,
 				149DC9E0223421EC0053EC2D /* Money_Machine.xcdatamodeld in Sources */,
+				144DCBB52236449F00C31357 /* ResultsViewController.swift in Sources */,
 				144DCBAC2236028000C31357 /* TransactionManager.swift in Sources */,
 				140E567722347D3D00CF732B /* AddViewController.swift in Sources */,
 				140E567B22347DCE00CF732B /* ReportsViewController.swift in Sources */,

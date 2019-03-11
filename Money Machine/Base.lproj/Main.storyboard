@@ -181,12 +181,19 @@
         <scene sceneID="JRx-5u-tAX">
             <objects>
                 <viewController id="GLA-ce-1G9" userLabel="Reports Screen" customClass="ReportsViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mR0-Z8-LDF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="X6d-cn-yg8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <viewLayoutGuide key="safeArea" id="oGD-6q-4nP"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="GLA-ce-1G9" id="WCG-JD-bcN"/>
+                            <outlet property="delegate" destination="GLA-ce-1G9" id="0f5-DL-TA0"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="view" destination="X6d-cn-yg8" id="Me5-70-nRh"/>
+                        <segue destination="LbS-Rr-6yb" kind="show" identifier="goReportDetail" id="o8E-Wy-eMe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZF-fk-6PS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,16 +227,43 @@
         <scene sceneID="TCK-I6-twK">
             <objects>
                 <viewController id="H1g-42-K6M" userLabel="Search Screen" customClass="SearchViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wET-Q7-8mc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T9f-uR-G8F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <viewLayoutGuide key="safeArea" id="tjF-w9-dOP"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="H1g-42-K6M" id="VXr-6D-ev0"/>
+                            <outlet property="delegate" destination="H1g-42-K6M" id="guh-Ha-9mb"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="LbS-Rr-6yb" kind="show" identifier="goResults" id="EIS-YJ-x4O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAY-Kq-nlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1817" y="841"/>
+        </scene>
+        <!--Results View Controller-->
+        <scene sceneID="X6M-aL-Mzp">
+            <objects>
+                <viewController id="LbS-Rr-6yb" customClass="ResultsViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aO4-DZ-G5a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="LbS-Rr-6yb" id="XgL-GR-meI"/>
+                            <outlet property="delegate" destination="LbS-Rr-6yb" id="dvZ-tY-zzb"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="view" destination="aO4-DZ-G5a" id="OhG-PG-Ghf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5i-AP-84H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2542" y="841"/>
         </scene>
     </scenes>
     <resources>
@@ -238,4 +272,7 @@
         <image name="receipt" width="300" height="123"/>
         <image name="search_icon" width="298" height="297"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="o8E-Wy-eMe"/>
+    </inferredMetricsTieBreakers>
 </document>

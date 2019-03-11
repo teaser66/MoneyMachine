@@ -160,17 +160,22 @@
         <scene sceneID="MjR-Kk-GEF">
             <objects>
                 <viewController id="NoL-bL-4zp" userLabel="Add Screen" customClass="AddViewController" customModule="Money_Machine" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XUa-DR-Xi3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iTF-Ox-zuN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <viewLayoutGuide key="safeArea" id="vDV-d7-COy"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="NoL-bL-4zp" id="485-mX-fEK"/>
+                            <outlet property="delegate" destination="NoL-bL-4zp" id="3wf-oP-pDZ"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="view" destination="iTF-Ox-zuN" id="AHr-dg-G73"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxh-rs-5Ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="134"/>
+            <point key="canvasLocation" x="1816.8" y="133.5832083958021"/>
         </scene>
         <!--Reports Screen-->
         <scene sceneID="JRx-5u-tAX">

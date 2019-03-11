@@ -189,7 +189,7 @@
 				149DC9D0223421EC0053EC2D /* Sources */,
 				149DC9D1223421EC0053EC2D /* Frameworks */,
 				149DC9D2223421EC0053EC2D /* Resources */,
-				6620128323F3A5AC1ABB5756 /* [CP] Embed Pods Frameworks */,
+				DF63E8B11DE38CA0E6147103 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,56 +331,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6620128323F3A5AC1ABB5756 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Money Machine/Pods-Money Machine-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Form/Form.framework",
-				"${BUILT_PRODUCTS_DIR}/HYP8601/HYP8601.framework",
-				"${BUILT_PRODUCTS_DIR}/HYPMathParser/HYPMathParser.framework",
-				"${BUILT_PRODUCTS_DIR}/HYPNorwegianAccountNumber/HYPNorwegianAccountNumber.framework",
-				"${BUILT_PRODUCTS_DIR}/HYPNorwegianSSN/HYPNorwegianSSN.framework",
-				"${BUILT_PRODUCTS_DIR}/NSDictionary-ANDYSafeValue/NSDictionary_ANDYSafeValue.framework",
-				"${BUILT_PRODUCTS_DIR}/NSDictionary-HYPNestedAttributes/NSDictionary_HYPNestedAttributes.framework",
-				"${BUILT_PRODUCTS_DIR}/NSJSONSerialization-ANDYJSONFile/NSJSONSerialization_ANDYJSONFile.framework",
-				"${BUILT_PRODUCTS_DIR}/NSObject-HYPTesting/NSObject_HYPTesting.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString-HYPContainsString/NSString_HYPContainsString.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString-HYPFormula/NSString_HYPFormula.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString-HYPRelationshipParser/NSString_HYPRelationshipParser.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString-HYPWordExtractor/NSString_HYPWordExtractor.framework",
-				"${BUILT_PRODUCTS_DIR}/NSString-ZENInflections/NSString_ZENInflections.framework",
-				"${BUILT_PRODUCTS_DIR}/UIViewController-HYPKeyboardToolbar/UIViewController_HYPKeyboardToolbar.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Form.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HYP8601.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HYPMathParser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HYPNorwegianAccountNumber.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HYPNorwegianSSN.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDictionary_ANDYSafeValue.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDictionary_HYPNestedAttributes.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSJSONSerialization_ANDYJSONFile.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_HYPTesting.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_HYPContainsString.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_HYPFormula.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_HYPRelationshipParser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_HYPWordExtractor.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSString_ZENInflections.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIViewController_HYPKeyboardToolbar.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Money Machine/Pods-Money Machine-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		83D90BBC3DB6D2E965A11131 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,6 +373,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF63E8B11DE38CA0E6147103 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Money Machine/Pods-Money Machine-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftForms/SwiftForms.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftForms.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Money Machine/Pods-Money Machine-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

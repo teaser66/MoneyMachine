@@ -2,8 +2,8 @@
 
 target 'Money Machine' do
   use_frameworks!
+  pod 'SwiftForms'
 
-  pod 'Form'
 
   # Pods for Money Machine
 

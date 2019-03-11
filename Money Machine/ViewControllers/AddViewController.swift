@@ -16,6 +16,7 @@ class AddViewController: FormViewController {
     
     
     struct Static {
+        static let usersTag = "users"
         static let userTag = "user"
         static let dateTag = "date"
         static let amountTag = "amount"
@@ -63,12 +64,138 @@ class AddViewController: FormViewController {
             
             // Save to DB
             
+            self.validateBeforeSave()
+            
         }
         
         alertController.addAction(save)
         
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func validateBeforeSave() {
+        var isValid = true
+        var message: String = ""
+        
+       let formValues = self.form.formValues()
+       
+       var hasAUser = false
+        
+        for formElement in formValues {
+            
+            
+            if formElement.key == Static.usersTag {
+                if let user = formElement.value as? String {
+                    if user.count > 0 {
+                        hasAUser = true
+                    }
+                }
+            }else if formElement.key == Static.userTag {
+                if let user = formElement.value as? String {
+                    if user.count > 0 {
+                        hasAUser = true
+                    }
+                }
+            }
+            
+            
+            
+            if formElement.key == Static.dateTag {
+                if let date = formElement.value as? String {
+                    if date.count > 0 {
+                        isValid = false
+                        if message.count == 0 {
+                            message = "Date Required"
+                        }else {
+                            message = message + "\nDate Required"
+                        }
+                    }
+                }else {
+                    isValid = false
+                    if message.count == 0 {
+                        message = "Date Required"
+                    }else {
+                        message = message + "\nDate Required"
+                    }
+                }
+            }
+            
+            if formElement.key == Static.amountTag {
+                if let amount = formElement.value as? Decimal {
+                    if amount == 0 {
+                        isValid = false
+                        if message.count == 0 {
+                            message = "Amount Required"
+                        }else {
+                            message = message + "\nAmount Required"
+                        }
+                    }
+                }else {
+                    isValid = false
+                    if message.count == 0 {
+                        message = "Amount Required"
+                    }else {
+                        message = message + "\nAmount Required"
+                    }
+                }
+            }
+            
+            if formElement.key == Static.categoryTag {
+                if let category = formElement.value as? String {
+                    if category.count > 0 {
+                        isValid = false
+                        if message.count == 0 {
+                            message = "Category Required"
+                        }else {
+                            message = message + "\nCategory Required"
+                        }
+                    }
+                }else {
+                    isValid = false
+                    if message.count == 0 {
+                        message = "Category Required"
+                    }else {
+                        message = message + "\nCategory Required"
+                    }
+                }
+            }
+            
+        }
+        
+        if hasAUser == false {
+            isValid = false
+            if message.count == 0 {
+                message = "UserId Required"
+            }else {
+                message = message + "\nUserId Required"
+            }
+        }
+        
+        if isValid == true {
+            
+          // Save it!
+            
+            
+        }else {
+            
+            let alert = UIAlertController(title: "Invalid Entry", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     
@@ -82,7 +209,7 @@ class AddViewController: FormViewController {
         
         
         let section1 = FormSectionDescriptor(headerTitle: nil, footerTitle: nil)
-        var row = FormRowDescriptor(tag: Static.categoryTag, type: .multipleSelector, title: "Users")
+        var row = FormRowDescriptor(tag: Static.usersTag, type: .multipleSelector, title: "Users")
         
         let userOptions = DataManager.transactionUsers()
         var userInts:[Int] = []
@@ -112,7 +239,7 @@ class AddViewController: FormViewController {
         section2.rows.append(row)
         
         
-        row = FormRowDescriptor(tag: Static.textView, type: .multilineText, title: "Description")
+        row = FormRowDescriptor(tag: Static.textView, type: .multilineText, title: "Description (Optional)")
         section2.rows.append(row)
         
 

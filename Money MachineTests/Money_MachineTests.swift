@@ -28,7 +28,7 @@ class Money_MachineTests: XCTestCase {
         dateFormatter.locale = Locale.current
         let date = dateFormatter.date(from: "2019-03-11") // replace Date String
         
-        transactionObject = TransactionObject(userId: "test_user", transactionDate: date!, transactionDescription: "Test Case 2", transactionAmount: 1.23, category: "Health", type: "Expense")
+        transactionObject = TransactionObject(userId: "test_user", transactionDate: date!, transactionDescription: "Test Case 1", transactionAmount: 1.23, category: "Health", type: "Expense")
         
         transactionObject2 = TransactionObject(userId: "test_user", transactionDate: date!, transactionDescription: "Test Case 2", transactionAmount: 2.34, category: "Auto", type: "Expense")
         
@@ -92,7 +92,7 @@ class Money_MachineTests: XCTestCase {
         let targetCategory = "Health, Auto"
         
         // 2. when
-        let  combinedObjectArray = ReportsViewController.combineResults(results: objectsArray)
+        let  combinedObjectArray = TransactionManager.combineResults(results: objectsArray)
         
         var combinedObject:TransactionObject?
         for object in combinedObjectArray {

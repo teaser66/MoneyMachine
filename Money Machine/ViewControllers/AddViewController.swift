@@ -52,6 +52,7 @@ class AddViewController: FormViewController {
     
     @objc func submit(_: UIBarButtonItem!) {
         
+        // Prompt user to verify they want to save
         let message = ""
         
         let alertController = UIAlertController(title: "Save Details?", message: message, preferredStyle: .alert)
@@ -80,6 +81,7 @@ class AddViewController: FormViewController {
     
     func validateBeforeSave() {
         
+        // Dismiss keyboard
         self.view.endEditing(true)
         
         var isValid = true
@@ -87,7 +89,7 @@ class AddViewController: FormViewController {
         
        let formValues = self.form.formValues()
        
-       var hasAUser = false
+        var hasAUser = false
         var hasACategory = false
         var hasANewUser = false
         var hasANewCategory = false
@@ -98,6 +100,7 @@ class AddViewController: FormViewController {
         var category:String?
         var textDescription:String = ""
         
+        // Loop through form values and validate
         for (key, value) in formValues {
             
             if key == Static.descriptionTag {
@@ -201,6 +204,7 @@ class AddViewController: FormViewController {
             }
         }
         
+        // If valid then save it
         if isValid == true {
             
           // Save it!
@@ -246,6 +250,7 @@ class AddViewController: FormViewController {
             
         }else {
             
+            // Not valid, tell user
             let alert = UIAlertController(title: "Invalid Entry", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -270,7 +275,7 @@ class AddViewController: FormViewController {
     
     fileprivate func loadForm() {
         
-        
+        // Genearate form UI, using SwiftForms
         let form = FormDescriptor(title: (entryType == "Expense" ? "Expense Form" : "Saving Form"))
         
         

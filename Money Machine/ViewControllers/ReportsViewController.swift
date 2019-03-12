@@ -41,51 +41,7 @@ class ReportsViewController: FormViewController {
     
     // Methods
     
-    class func combineResults(results: [TransactionObject]) -> [TransactionObject] {
-        
-        var returnArray:[TransactionObject] = []
-        
-        let uniqueUsersArray = results.unique{$0.userId}
-        
-        for userObject in uniqueUsersArray {
-            
-           var newObject:TransactionObject?
-            
-           let thisUserArray = results.filter({$0.userId == userObject.userId})
-            
-            
-            for aObject in thisUserArray {
-                if let _ = newObject {
-                    // Add to it
-                    newObject?.category = ("\(newObject?.category ?? ""), \(aObject.category)")
-                    
-                    if aObject.type == "Expense" {
-                        let total = newObject?.totalExpense ?? 0.0
-                        newObject?.totalExpense = total + aObject.transactionAmount
-                    }else {
-                        let total = newObject?.totalSaving ?? 0.0
-                        newObject?.totalSaving = total + aObject.transactionAmount
-                    }
-                    
-                }else {
-                    // Create it
-                    let mObject = (TransactionObject(userId: aObject.userId, transactionDate: aObject.transactionDate, transactionDescription: aObject.transactionDescription, transactionAmount: aObject.transactionAmount, category: aObject.category, type: aObject.type))
-                    if aObject.type == "Expense" {
-                        mObject.totalExpense = aObject.transactionAmount
-                    }else {
-                        mObject.totalSaving = aObject.transactionAmount
-                    }
-                    newObject = mObject
-                }
-            }
-            
-            returnArray.append(newObject!)
-            
-        }
-        
-        return returnArray
-        
-    }
+   
     
     
     // Actions
@@ -98,6 +54,7 @@ class ReportsViewController: FormViewController {
         
         let formValues = self.form.formValues()
         
+        // Loop through form values and validate
         for (key, value) in formValues {
             
             
@@ -122,9 +79,11 @@ class ReportsViewController: FormViewController {
         transResults = DataManager.searchForItWith(attributes: theDict)
         
         if transResults.count > 0 {
-            resultsToPass = ReportsViewController.combineResults(results: transResults)
+            // Got results, move to report page
+            resultsToPass = TransactionManager.combineResults(results: transResults)
             self.performSegue(withIdentifier: "goReportDetail", sender: self)
         }else {
+            // No results, tell user
             let alert = UIAlertController(title: "No Results", message: "Try another date range", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -154,7 +113,7 @@ class ReportsViewController: FormViewController {
     
     fileprivate func loadForm() {
         
-        
+        // Genearate form UI, using SwiftForms
         let form = FormDescriptor(title: "Report Generator")
         
         
@@ -197,8 +156,10 @@ class ReportsViewController: FormViewController {
         
         if (segue.identifier == "goReportDetail") {
             
+            
             let destinationVC = segue.destination as! ResultsViewController
             
+            // Pass data to next screen
             destinationVC.resultsArray = resultsToPass
             destinationVC.reportDetailsArray = transResults
             destinationVC.reportType = reportType

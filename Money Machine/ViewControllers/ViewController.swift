@@ -51,6 +51,7 @@ class ViewController: UIViewController {
             
             let destinationVC = segue.destination as! AddViewController
             
+            // Need to tell AddViewController if we are expense or saving. 
             if ((sender as! UIButton) == expenseButton) {
                 destinationVC.entryType = "Expense"
             }else if ((sender as! UIButton) == saveButton) {

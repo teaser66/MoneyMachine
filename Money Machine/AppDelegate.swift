@@ -18,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Pull categories from DB
         let categories = DataManager.getEntities(name:"Category")
-            
+        
+        // If none exist, then add defaults
         if categories.count == 0  {
             preloadData()
         }
@@ -100,9 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    /// Loads the default cateroies to the DB
     func preloadData () {
    
-            
+        // Define defaults array
         let categories = ["Food", "Health", "Home", "Tech", "Vehicle", "Clothing", "Account", "Other"] as [String]
         
         //Save to Core Data

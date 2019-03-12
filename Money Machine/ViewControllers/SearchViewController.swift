@@ -66,6 +66,7 @@ class SearchViewController: FormViewController {
         
         var hasSearchCriteria = false
         
+        // Loop through form values and validate
         for (key, value) in formValues {
             
             if key == Static.typeTag {
@@ -110,7 +111,7 @@ class SearchViewController: FormViewController {
         }
         
        
-        
+        // If good, then go search
         if hasSearchCriteria == true {
             transResults = DataManager.searchForItWith(attributes: theDict)
             
@@ -133,6 +134,7 @@ class SearchViewController: FormViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }else {
+            // Not good, tell user
             let alert = UIAlertController(title: "Nothing to search", message: "Please choose at least one attribute", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -162,7 +164,7 @@ class SearchViewController: FormViewController {
     
     fileprivate func loadForm() {
         
-        
+        // Genearate form UI, using SwiftForms
         let form = FormDescriptor(title: "Search Form")
         
         
@@ -257,6 +259,7 @@ class SearchViewController: FormViewController {
             
             let destinationVC = segue.destination as! ResultsViewController
             
+            // Pass results to Results View Controller
                 destinationVC.resultsArray = transResults
             
         }

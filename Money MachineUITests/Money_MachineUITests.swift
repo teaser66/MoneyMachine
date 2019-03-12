@@ -42,5 +42,25 @@ class Money_MachineUITests: XCTestCase {
         XCTAssertTrue(theErrorAlert.exists)
         
     }
+    
+    func testCanNotSearchEmptyForm() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        
+        let app = XCUIApplication()
+        app.buttons["search icon"].tap()
+        app.navigationBars["Search Form"].buttons["Search"].tap()
+        
+        
+        // given
+        let theErrorAlert = app.alerts["Nothing to search"].children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .other).element(boundBy: 0).children(matching: .other).element
+        
+        // then
+        XCTAssertTrue(theErrorAlert.exists)
+        
+    }
+    
+    
 
 }

@@ -10,6 +10,7 @@
 		140E567722347D3D00CF732B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567622347D3D00CF732B /* AddViewController.swift */; };
 		140E567922347DBA00CF732B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567822347DBA00CF732B /* SearchViewController.swift */; };
 		140E567B22347DCE00CF732B /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E567A22347DCE00CF732B /* ReportsViewController.swift */; };
+		141DA3DD22375D4B00386C1D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141DA3DC22375D4B00386C1D /* DetailViewController.swift */; };
 		144DCBAC2236028000C31357 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBAB2236027F00C31357 /* TransactionManager.swift */; };
 		144DCBB1223602C700C31357 /* TransactionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB0223602C700C31357 /* TransactionObject.swift */; };
 		144DCBB32236043600C31357 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DCBB22236043600C31357 /* DataManager.swift */; };
@@ -49,6 +50,7 @@
 		140E567622347D3D00CF732B /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		140E567822347DBA00CF732B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		140E567A22347DCE00CF732B /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		141DA3DC22375D4B00386C1D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		144DCBAB2236027F00C31357 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		144DCBB0223602C700C31357 /* TransactionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObject.swift; sourceTree = "<group>"; };
 		144DCBB22236043600C31357 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				140E567822347DBA00CF732B /* SearchViewController.swift */,
 				140E567A22347DCE00CF732B /* ReportsViewController.swift */,
 				144DCBB42236449F00C31357 /* ResultsViewController.swift */,
+				141DA3DC22375D4B00386C1D /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				141DA3DD22375D4B00386C1D /* DetailViewController.swift in Sources */,
 				140E567922347DBA00CF732B /* SearchViewController.swift in Sources */,
 				149DC9DA223421EC0053EC2D /* ViewController.swift in Sources */,
 				149DC9E0223421EC0053EC2D /* Money_Machine.xcdatamodeld in Sources */,

@@ -16,6 +16,8 @@ public class TransactionObject: NSObject {
     public var transactionAmount:Decimal
     public var category:String
     public var type:String
+    public var totalExpense:Decimal
+    public var totalSaving:Decimal
    
     public init(userId:String, transactionDate:Date, transactionDescription:String, transactionAmount:Decimal, category:String, type:String) {
         self.userId = userId
@@ -24,7 +26,11 @@ public class TransactionObject: NSObject {
         self.transactionAmount = transactionAmount
         self.category = category
         self.type = type
+        self.totalExpense = 0.0
+        self.totalSaving = 0.0
     }
+    
+   
    
     
 }

@@ -15,6 +15,7 @@ class ReportsViewController: FormViewController {
     var reportType:String = ""
     
     var transResults:[TransactionObject] = []
+    var resultsToPass:[TransactionObject] = []
     
     let categoryOptions = DataManager.transactionCategories()
     let userOptions = DataManager.transactionUsers()
@@ -34,6 +35,55 @@ class ReportsViewController: FormViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Generate", style: .plain, target: self, action: #selector(SearchViewController.searchIt(_:)))
         
+        
+    }
+    
+    
+    // Methods
+    
+    func combineResults(results: [TransactionObject]) -> [TransactionObject] {
+        
+        var returnArray:[TransactionObject] = []
+        
+        let uniqueUsersArray = results.unique{$0.userId}
+        
+        for userObject in uniqueUsersArray {
+            
+           var newObject:TransactionObject?
+            
+           let thisUserArray = results.filter({$0.userId == userObject.userId})
+            
+            
+            for aObject in thisUserArray {
+                if let _ = newObject {
+                    // Add to it
+                    newObject?.category = ("\(newObject?.category ?? ""), \(aObject.category)")
+                    
+                    if aObject.type == "Expense" {
+                        let total = newObject?.totalExpense ?? 0.0
+                        newObject?.totalExpense = total + aObject.transactionAmount
+                    }else {
+                        let total = newObject?.totalSaving ?? 0.0
+                        newObject?.totalSaving = total + aObject.transactionAmount
+                    }
+                    
+                }else {
+                    // Create it
+                    let mObject = (TransactionObject(userId: aObject.userId, transactionDate: aObject.transactionDate, transactionDescription: aObject.transactionDescription, transactionAmount: aObject.transactionAmount, category: aObject.category, type: aObject.type))
+                    if aObject.type == "Expense" {
+                        mObject.totalExpense = aObject.transactionAmount
+                    }else {
+                        mObject.totalSaving = aObject.transactionAmount
+                    }
+                    newObject = mObject
+                }
+            }
+            
+            returnArray.append(newObject!)
+            
+        }
+        
+        return returnArray
         
     }
     
@@ -72,6 +122,7 @@ class ReportsViewController: FormViewController {
         transResults = DataManager.searchForItWith(attributes: theDict)
         
         if transResults.count > 0 {
+            resultsToPass = combineResults(results: transResults)
             self.performSegue(withIdentifier: "goReportDetail", sender: self)
         }else {
             let alert = UIAlertController(title: "No Results", message: "Try another date range", preferredStyle: .alert)
@@ -148,7 +199,8 @@ class ReportsViewController: FormViewController {
             
             let destinationVC = segue.destination as! ResultsViewController
             
-            destinationVC.resultsArray = transResults
+            destinationVC.resultsArray = resultsToPass
+            destinationVC.reportDetailsArray = transResults
             destinationVC.reportType = reportType
             
         }

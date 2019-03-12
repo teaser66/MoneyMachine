@@ -304,9 +304,7 @@ class AddViewController: FormViewController {
         row.configuration.cell.showsInputToolbar = true
         section2.rows.append(row)
         
-        
-        row = FormRowDescriptor(tag: Static.descriptionTag, type: .multilineText, title: "Description (Optional)")
-        section2.rows.append(row)
+      
         
 
         row = FormRowDescriptor(tag: Static.amountTag, type: .decimal, title: "Amount")
@@ -340,11 +338,10 @@ class AddViewController: FormViewController {
         
         section3.rows.append(row)
         
-        row = FormRowDescriptor(tag: Static.button, type: .button, title: "Clear Form")
-        row.configuration.button.didSelectClosure = { _ in
-            self.loadForm()
-        }
-        //section3.rows.append(row)
+        
+        row = FormRowDescriptor(tag: Static.descriptionTag, type: .multilineText, title: "Description (Optional)")
+        section3.rows.append(row)
+        
         
         form.sections = [section1,section2,section3]
         

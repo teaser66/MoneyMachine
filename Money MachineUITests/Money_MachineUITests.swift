@@ -30,12 +30,13 @@ class Money_MachineUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
+        // given
         let app = XCUIApplication()
         app.buttons["receipt"].tap()
         app.navigationBars["Saving Form"].buttons["Save"].tap()
         app.alerts["Save Details?"].buttons["Save"].tap()
         
-        // given
+        // when
         let theErrorAlert = app.alerts["Invalid Entry"].staticTexts["Invalid Entry"]
         
         // then
@@ -47,13 +48,13 @@ class Money_MachineUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        
+        // given
         let app = XCUIApplication()
         app.buttons["search icon"].tap()
         app.navigationBars["Search Form"].buttons["Search"].tap()
         
         
-        // given
+        // when
         let theErrorAlert = app.alerts["Nothing to search"].children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .other).element(boundBy: 0).children(matching: .other).element
         
         // then

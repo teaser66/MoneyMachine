@@ -41,7 +41,7 @@ class ReportsViewController: FormViewController {
     
     // Methods
     
-    func combineResults(results: [TransactionObject]) -> [TransactionObject] {
+    class func combineResults(results: [TransactionObject]) -> [TransactionObject] {
         
         var returnArray:[TransactionObject] = []
         
@@ -122,7 +122,7 @@ class ReportsViewController: FormViewController {
         transResults = DataManager.searchForItWith(attributes: theDict)
         
         if transResults.count > 0 {
-            resultsToPass = combineResults(results: transResults)
+            resultsToPass = ReportsViewController.combineResults(results: transResults)
             self.performSegue(withIdentifier: "goReportDetail", sender: self)
         }else {
             let alert = UIAlertController(title: "No Results", message: "Try another date range", preferredStyle: .alert)

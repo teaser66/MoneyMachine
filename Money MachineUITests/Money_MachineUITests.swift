@@ -26,9 +26,21 @@ class Money_MachineUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testCanNotSaveEmptyForm() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.buttons["receipt"].tap()
+        app.navigationBars["Saving Form"].buttons["Save"].tap()
+        app.alerts["Save Details?"].buttons["Save"].tap()
+        
+        // given
+        let theErrorAlert = app.alerts["Invalid Entry"].staticTexts["Invalid Entry"]
+        
+        // then
+        XCTAssertTrue(theErrorAlert.exists)
+        
     }
 
 }
